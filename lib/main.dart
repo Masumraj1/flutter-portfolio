@@ -1,27 +1,38 @@
-import 'package:flutter/material.dart';
 
-import 'app/core/app_constants/app_colors.dart';
-import 'app/features/screens/home_screen.dart';
+
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'app/features/home/views/home_page.dart';
+
 
 
 void main() {
-  runApp(const MyPortfolio());
+  runApp(const ProviderScope(child: PortfolioApp()));
 }
 
-class MyPortfolio extends StatelessWidget {
-  const MyPortfolio({super.key});
+class PortfolioApp extends StatelessWidget {
+  const PortfolioApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Masum Rana Portfolio',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: AppColors.primary,
-        scaffoldBackgroundColor: AppColors.secondary,
-        fontFamily: 'Poppins',
-      ),
-      home: const HomeScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(1440, 900),
+      minTextAdapt: true,
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.dark().copyWith(
+            scaffoldBackgroundColor: const Color(0xFF0B0F1A),
+            primaryColor: const Color(0xFF3B82F6),
+          ),
+          home: const HomePage(),
+        );
+      },
     );
   }
 }
+
+
