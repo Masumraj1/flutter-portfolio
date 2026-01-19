@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'custom_network_image.dart';
 import 'hero_content.dart';
 
 class HeroSection extends StatelessWidget {
@@ -49,27 +50,35 @@ class HeroSection extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Background Glow Effect
+          // ১. Background Glow Effect
           Container(
-            width: isMobile ? 220.r : 280.r,
-            height: isMobile ? 220.r : 280.r,
+            width: isMobile ? 240.r : 300.r,
+            height: isMobile ? 240.r : 300.r,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
                   color: Colors.blueAccent.withValues(alpha: 0.2),
                   blurRadius: 50,
-                  spreadRadius: 10,
+                  spreadRadius: 15,
                 ),
               ],
             ),
           ),
-          CircleAvatar(
-            radius: isMobile ? 110.r : 140.r,
-            backgroundColor: Colors.blueAccent,
-            child: CircleAvatar(
-              radius: isMobile ? 105.r : 135.r,
-              backgroundImage: const NetworkImage('https://via.placeholder.com/300'),
+
+          // ২. Blue Border Ring (CustomNetworkImage এর বাইরে থাকবে)
+          Container(
+            padding: EdgeInsets.all(5.r), // বর্ডারের গুরুত্ব বা থিকনেস
+            decoration: const BoxDecoration(
+              color: Colors.blueAccent,
+              shape: BoxShape.circle,
+            ),
+            child: CustomNetworkImage(
+              imageUrl: 'https://avatars.githubusercontent.com/u/141552007?v=4', // আপনার ছবি এখানে দিন
+              height: isMobile ? 210.r : 270.r,
+              width: isMobile ? 210.r : 270.r,
+              boxShape: BoxShape.circle,
+              backgroundColor: const Color(0xFF161B22), // লোডিং বা এররের সময় কালার
             ),
           ),
         ],
