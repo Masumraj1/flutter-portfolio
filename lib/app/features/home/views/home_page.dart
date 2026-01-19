@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../providers/scroll_controller_provider.dart';
 import '../widgets/custom_nav_bar.dart';
+import '../widgets/hero_section.dart';
 import '../widgets/sections.dart';
 
 class HomePage extends ConsumerWidget {
@@ -41,12 +42,20 @@ class HomePage extends ConsumerWidget {
             projectsKey: projectsKey,
             contactKey: contactKey,
           ),
+
+
           Expanded(
             child: SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 children: [
-                  _buildHeroSection(isMobile, scrollTo, contactKey),
+
+                  //============Hero Section===========
+                  HeroSection(
+                    isMobile: isMobile,
+                    scrollTo: scrollTo,
+                    contactKey: contactKey,
+                  ),
                   _buildStatsSection(isMobile),
                   _buildAboutSection(aboutKey, isMobile),
                   _buildSkillsSection(skillsKey, isMobile),
@@ -63,70 +72,9 @@ class HomePage extends ConsumerWidget {
     );
   }
 
-  // --- Navbar ---
 
-  Widget _navBtn(String t, VoidCallback onTap) => TextButton(
-    onPressed: onTap,
-    child: Text(t, style: const TextStyle(color: Colors.white70)),
-  );
 
-  // --- Hero Section ---
-  Widget _buildHeroSection(
-    bool isMobile,
-    Function scrollTo,
-    GlobalKey contact,
-  ) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 20.w : 100.w,
-        vertical: 100.h,
-      ),
-      child: Flex(
-        direction: isMobile ? Axis.vertical : Axis.horizontal,
-        children: [
-          Expanded(
-            flex: isMobile ? 0 : 1,
-            child: Column(
-              crossAxisAlignment: isMobile
-                  ? CrossAxisAlignment.center
-                  : CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "SOFTWARE ENGINEER",
-                  style: TextStyle(
-                    letterSpacing: 4,
-                    color: Colors.blueAccent,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14.sp,
-                  ),
-                ),
-                SizedBox(height: 20.h),
-                Text(
-                  "Mobile Application Developer (Flutter)",
-                  style: TextStyle(
-                    fontSize: isMobile ? 30.sp : 50.sp,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                SizedBox(height: 20.h),
-                Text(
-                  "2 Years, 4 Days of professional experience in building 10+ high-quality mobile apps.",
-                  style: TextStyle(fontSize: 18.sp, color: Colors.grey),
-                ),
-                SizedBox(height: 40.h),
-                ElevatedButton(
-                  onPressed: () => scrollTo(contact),
-                  child: const Text("Hire Me"),
-                ),
-              ],
-            ),
-          ),
-          if (!isMobile) SizedBox(width: 50.w),
-          CircleAvatar(radius: 130.r, backgroundColor: Colors.blueAccent),
-        ],
-      ),
-    );
-  }
+
 
   // --- Stats ---
   Widget _buildStatsSection(bool isMobile) {
