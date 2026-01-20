@@ -85,14 +85,14 @@ class HomePage extends ConsumerWidget {
                     sectionKey: projectsKey,
                     isMobile: isMobile,
                   ),
-                 //================Contact Section===============
-                  ContactSection(
-                    sectionKey: contactKey,
-                    isMobile: isMobile,
-                  ),
-
-                  //=============Footer Section==========
-                  const FooterSection(),
+                //  //================Contact Section===============
+                //   ContactSection(
+                //     sectionKey: contactKey,
+                //     isMobile: isMobile,
+                //   ),
+                //
+                //   //=============Footer Section==========
+                //   const FooterSection(),
                 ],
               ),
             ),

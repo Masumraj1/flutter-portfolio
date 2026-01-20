@@ -34,7 +34,7 @@ class StatsSection extends StatelessWidget {
     return [
       const StatCard(value: "2+", label: "Years Job Exp"),
       if (isMobile) SizedBox(height: 40.h),
-      const StatCard(value: "1+", label: "Self Learning"),
+      const StatCard(value: "1+", label: "Years Self Learning"),
       if (isMobile) SizedBox(height: 40.h),
       const StatCard(value: "15+", label: "Projects"),
       if (isMobile) SizedBox(height: 40.h),

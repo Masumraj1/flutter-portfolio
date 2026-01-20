@@ -14,7 +14,6 @@ class ProjectsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // প্রজেক্ট লিস্ট - ভবিষ্যতে এখান থেকে ডাটা অ্যাড/রিমুভ করবেন
     final List<Map<String, dynamic>> projects = [
       {
         'title': 'E-Commerce App',

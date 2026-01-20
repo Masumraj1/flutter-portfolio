@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'custom_network_image.dart';
+
 class ProjectCard extends StatelessWidget {
   final String title;
   final String description;
@@ -17,63 +19,76 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFF161B22),
-        borderRadius: BorderRadius.circular(20.r),
-        image: DecorationImage(
-          image: NetworkImage(imageUrl),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Container(
-        padding: EdgeInsets.all(20.r),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.r),
-          gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            colors: [
-              Colors.black.withOpacity(0.9),
-              Colors.black.withOpacity(0.2),
-            ],
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20.r),
+      child: Stack(
+        children: [
+          /// Background Image
+          CustomNetworkImage(
+            imageUrl: imageUrl,
+            height: double.infinity,
+            width: double.infinity,
+            boxShape: BoxShape.rectangle,
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 22.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+
+          /// Gradient Overlay
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  Colors.black.withValues(alpha: 0.85),
+                  Colors.black.withValues(alpha: 0.2),
+                ],
               ),
             ),
-            SizedBox(height: 5.h),
-            Text(
-              description,
-              style: TextStyle(color: Colors.white70, fontSize: 14.sp),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            SizedBox(height: 12.h),
-            Wrap(
-              spacing: 8.w,
-              children: techStack
-                  .map((tech) => Text(
-                "#$tech",
-                style: TextStyle(
-                  color: Colors.blueAccent,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.bold,
+          ),
+
+          /// Content
+          Padding(
+            padding: EdgeInsets.all(20.r),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
-              ))
-                  .toList(),
+                SizedBox(height: 6.h),
+                Text(
+                  description,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: Colors.white70,
+                  ),
+                ),
+                SizedBox(height: 12.h),
+                Wrap(
+                  spacing: 8.w,
+                  runSpacing: 4.h,
+                  children: techStack.map((tech) {
+                    return Text(
+                      '#$tech',
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.blueAccent,
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
