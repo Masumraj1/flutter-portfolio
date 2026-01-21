@@ -2,12 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../providers/scroll_controller_provider.dart';
 
 class FooterSection extends ConsumerWidget {
   const FooterSection({super.key});
 
+  Future<void> _openUrl(String url) async {
+    final uri = Uri.parse(url);
+    if (!await launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = ref.watch(scrollControllerProvider);
@@ -23,26 +33,32 @@ class FooterSection extends ConsumerWidget {
       child: Column(
         children: [
           /// Social Icons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _socialSvgIcon(
-                asset: 'assets/icons/linkedin.svg',
-                tooltip: 'LinkedIn',
-                onTap: () {},
-              ),
-              _socialSvgIcon(
-                asset: 'assets/icons/github_new.svg',
-                tooltip: 'GitHub',
-                onTap: () {},
-              ),
-              _socialSvgIcon(
-                asset: 'assets/icons/facebook.svg',
-                tooltip: 'Facebook',
-                onTap: () {},
-              ),
-            ],
+        Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _socialSvgIcon(
+            asset: 'assets/icons/linkedin.svg',
+            tooltip: 'LinkedIn',
+            onTap: () {
+              _openUrl('https://www.linkedin.com/in/flutterapp/');
+            },
           ),
+          _socialSvgIcon(
+            asset: 'assets/icons/github_new.svg',
+            tooltip: 'GitHub',
+            onTap: () {
+              _openUrl('https://github.com/Masumraj1');
+            },
+          ),
+          _socialSvgIcon(
+            asset: 'assets/icons/facebook.svg',
+            tooltip: 'Facebook',
+            onTap: () {
+              _openUrl('https://www.facebook.com/sadibestu/');
+            },
+          ),
+        ],
+      ),
 
           SizedBox(height: 24.h),
 
