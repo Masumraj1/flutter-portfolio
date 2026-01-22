@@ -57,6 +57,38 @@ class ProjectsSection extends StatelessWidget {
         'apkLink': '',
         'videoDemo': '',
       },
+      {
+        'title': 'Ilera',
+        'desc': 'Ilera is a revolutionary telehealth platform connecting users globally with UK-based medical specialists. It enables seamless video consultations, treatments, and follow-up care from home, bringing world-class healthcare directly to your fingertips.',
+        'imageUrl': 'assets/images/ilera_banner.png',
+        'tech': ['Flutter', 'Firebase', 'Getx', 'Rest API'],
+        'playStore': 'https://play.google.com/store/apps/details?id=com.medical.rebecca&hl=en',
+        'appStore': '',
+        'apkLink': '',
+        'videoDemo': '',
+      },
+
+      {
+        'title': 'Carenes',
+        'desc': 'The ultimate all-in-one booking platform for beauty and wellness. Discover top-rated hair salons, nail studios, and spas near you, and book your appointments 24/7 with secure prepayments and exclusive local deals.',
+        'imageUrl': 'assets/images/carenes_banner.png',
+        'tech': ['Flutter', 'Firebase', 'Getx', 'Rest API'],
+        'playStore': 'https://play.google.com/store/apps/details?id=com.mmemmo.careness&hl=en',
+        'appStore': '',
+        'apkLink': '',
+        'videoDemo': '',
+      },
+
+      {
+        'title': 'The Cultured Ninja',
+        'desc': 'Screen Delights is a premium movie discovery and streaming platform designed for cinema enthusiasts. It features a sleek, dark-themed UI for browsing trending titles, personalized watchlists',
+        'imageUrl': 'assets/images/culter_ninja_banner.png',
+        'tech': ['Flutter', 'Firebase', 'Getx', 'Rest API'],
+        'playStore': '',
+        'appStore': '',
+        'apkLink': '',
+        'videoDemo': '',
+      },
     ];
 
     return Container(
